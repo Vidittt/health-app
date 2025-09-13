@@ -14,6 +14,13 @@ function App() {
     const selectedFiles = Array.from(e.target.files);
     setFiles((currentFiles) => [...currentFiles, ...selectedFiles]);
 
+    // Select the first file if only one was uploaded
+    if (e.target?.files?.length === 1) {
+      setSelectedFile(e.target.files[0]);
+    } else {
+      setSelectedFile(null);
+    }
+
     for (const file of selectedFiles) {
       // runGemini for each new file
       try {
@@ -26,12 +33,6 @@ function App() {
       }
     }
 
-    // Select the first file if only one was uploaded
-    if (e.target?.files?.length === 1) {
-      setSelectedFile(e.target.files[0]);
-    } else {
-      setSelectedFile(null);
-    }
   };
 
   const handleShowDetails = (file) => {

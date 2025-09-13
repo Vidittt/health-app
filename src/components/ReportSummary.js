@@ -1,5 +1,5 @@
 import ShowDetails from "./ShowDetails";
-import { useState, useEffect } from "react";
+import LoadingGif from "../assets/loading_icon.gif";
 
 export default function ReportSummary({ file, reportData }) {
   return (
@@ -7,12 +7,16 @@ export default function ReportSummary({ file, reportData }) {
       <h1 className="text-4xl font-bold text-center">Laboratory Report</h1>
       <h2 className="text-2xl text-center">{file.name}</h2>
 
-      {reportData && (
+      {reportData ? (
         <div>
           <ShowDetails
             reportDetails={reportData.patientDetails}
             lipidProfileData={reportData.lipidProfileData}
           />
+        </div>
+      ) : (
+        <div className="flex justify-center items-center">
+          <img src={LoadingGif} alt="loading..." />
         </div>
       )}
     </div>
