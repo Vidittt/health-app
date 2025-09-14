@@ -11,7 +11,7 @@ export default function ReportSummary({ file, reportData }) {
         <div>
           <ShowDetails
             reportDetails={reportData.patientDetails}
-            lipidProfileData={reportData.lipidProfileData}
+            lipidProfileData={reportData.reportData}
           />
         </div>
       ) : (

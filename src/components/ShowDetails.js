@@ -44,9 +44,9 @@ export default function ShowDetails({ reportDetails, lipidProfileData }) {
         </div>
 
         {/* Table */}
-        <h2 className="text-2xl font-semibold text-gray-700 mb-4">
+        {/* <h2 className="text-2xl font-semibold text-gray-700 mb-4">
           Lipid Profile
-        </h2>
+        </h2> */}
         <ReportTable data={lipidProfileData} />
       </div>
     </div>

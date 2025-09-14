@@ -22,14 +22,18 @@ export async function runGemini({file}) {
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
   const prompt = `Read as many details as you can from the given medical report and output only JSON in this format:
-  {
-    patientDetails: {
+  The JSON should have 2 main attributes, patientDetails and reportData.
+  The patientDetails object should be exactly as follows with details from the report.
+ 
+   patientDetails: {
       patientName: "",
       referringDoctor: "",
       sex: "",
       age: ""
-    },
-    lipidProfileData: {
+    }
+
+    the reportData attribute should be as follows. You have to find all the values in the report for which the test is done. Extract result value, unit, and reference range. Here is an example.
+    reportData: {
       Cholesterol: { result: "", unit: "mg/dL", referenceRange: "110-200" },
       "HDL Cholesterol": { result: "", unit: "mg/dL", referenceRange: "40-60" },
       Triglyceride : {result: "", unit: "mg/dL", referenceRange: "0-150"},
