@@ -10,8 +10,8 @@ export default function ReportSummary({ file, reportData }) {
       {reportData ? (
         <div>
           <ShowDetails
-            reportDetails={reportData.patientDetails}
-            lipidProfileData={reportData.reportData}
+            reportDetails={reportData?.[0]?.patientDetails}
+            lipidProfileData={reportData?.[0]?.reportData}
           />
         </div>
       ) : (

@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const genAI = new GoogleGenerativeAI("AIzaSyDUaD_jNoYI7Z_ZFqg_oM0nx5iJSk8vOHI"); // use .env in production
+const genAI = new GoogleGenerativeAI("AIzaSyBeT4MlunyUcQfUbhtydma2ObSifSB40ag"); // use .env in production
 
 const toBase64 = (file) => {
   return new Promise((resolve, reject) => {
@@ -19,10 +19,10 @@ export async function runGemini({file}) {
   const base64Data = await toBase64(file);
   const mimeType = file.type || "application/octet-stream";
 
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
   const prompt = `Read as many details as you can from the given medical report and output only JSON in this format:
-  The JSON should have 2 main attributes, patientDetails and reportData.
+  The JSON should have a list of patient details. Each patient detail should have 2 main attributes, patientDetails and reportData.
   The patientDetails object should be exactly as follows with details from the report.
  
    patientDetails: {
@@ -41,6 +41,8 @@ export async function runGemini({file}) {
       "Chol/HDL": { result: "", unit: "", referenceRange: "0-4.1" },
       "LDL Cholesterol": { result: "", unit: "mg/dL", referenceRange: "0-100" },
     }
+
+  If there is a report date present, extract that as well and store it in reportDate attribute in ISO format.
   }`;
 
   const result = await model.generateContent({

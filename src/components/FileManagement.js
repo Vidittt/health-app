@@ -1,10 +1,11 @@
 export default function FileManagement({
-	inputKey,
-	handleFileChange,		
-	files,
-	selectedFile,
-	handleShowDetails,
-	handleDelete
+  inputKey,
+  handleFileChange,
+  files,
+  selectedFile,
+  handleShowDetails,
+  handleDelete,
+  handleShowGraphView,
 }) {
   return (
     <div className="w-1/3 p-8 border-r border-gray-200">
@@ -31,23 +32,30 @@ export default function FileManagement({
 					/>
       </div>
 
-      <input
-        key={inputKey}
-        type="file"
-        onChange={handleFileChange}
-        multiple
-        className="hidden"
-        id="file-upload"
-      />
-      <label
-        htmlFor="file-upload"
-        className="bottom-6 right-6 px-6 py-3 bg-blue-600 text-white font-medium rounded-lg shadow-md hover:bg-blue-700 transition-colors cursor-pointer"
-      >
-        Add Reports
-      </label>
+      <div className="flex items-center space-x-3 mb-4">
+        <input
+          key={inputKey}
+          type="file"
+          onChange={handleFileChange}
+          multiple
+          className="hidden"
+          id="file-upload"
+        />
+        <label
+          htmlFor="file-upload"
+          className="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg shadow-md hover:bg-blue-700 transition-colors cursor-pointer"
+        >
+          Add Reports
+        </label>
 
-      <br />
-      <br />
+        <button
+          type="button"
+          onClick={() => handleShowGraphView()}
+          className="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg shadow-md hover:bg-blue-700 transition-colors"
+        >
+          View Graph
+        </button>
+      </div>
       <h2 className="text-xl font-bold mb-4 text-gray-800">Uploaded Files</h2>
 
       <div className="flex flex-col space-y-4">

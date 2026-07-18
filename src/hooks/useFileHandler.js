@@ -77,6 +77,7 @@ export const useFileHandler = () => {
       try {
         const summary = await runGemini({ file });
         setSummaries(prev => ({ ...prev, [file.name]: summary }));
+        console.log("Summaries for file:", file.name, summary);
       } catch (err) {
         console.error("Error generating summary:", err);
       }
@@ -113,6 +114,7 @@ export const useFileHandler = () => {
     setInputKey(Date.now());
   };
 
+
   return {
     files,
     selectedFile,
@@ -127,3 +129,4 @@ export const useFileHandler = () => {
     handleRenameCancel
   };
 };
+// (Aggregation moved to consumer components like GraphView)

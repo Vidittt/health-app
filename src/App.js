@@ -3,6 +3,8 @@ import FileManagement from "./components/FileManagement.js";
 import ReportLayout from "./components/ReportLayout.js";
 import RenameDialog from "./components/RenameDialog.js";
 import { useFileHandler } from "./hooks/useFileHandler";
+import { useState } from "react";
+import GraphView from "./components/GraphView.js";
 
 function App() {
   const {
@@ -18,7 +20,10 @@ function App() {
     handleRenameSubmit,
     handleRenameCancel
   } = useFileHandler();
-
+  const [showGraphsView, setShowGraphsView] =  useState(false);
+  const handleShowGraphView = () => {
+    setShowGraphsView(prev => !prev);
+  }
   return (
     <div className="flex flex-col min-h-screen font-sans mx-auto max-w-7xl">
       <Header />
@@ -30,8 +35,16 @@ function App() {
           selectedFile={selectedFile}
           handleShowDetails={handleShowDetails}
           handleDelete={handleDelete}
+          handleShowGraphView={handleShowGraphView}
         />
-        <ReportLayout selectedFile={selectedFile} summaries={summaries} />
+        { showGraphsView ? (
+          <GraphView
+            summaries={summaries}
+            files={files}
+          />
+        ) : (
+          <ReportLayout selectedFile={selectedFile} summaries={summaries} />
+        )}
       </div>
 
       <RenameDialog

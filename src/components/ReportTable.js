@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function ReportTable({ data }) {
   const isAbnormal = (result, referenceRange) => {
     if (!result || !referenceRange) {

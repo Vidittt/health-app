@@ -10,43 +10,39 @@ export default function ShowDetails({ reportDetails, lipidProfileData }) {
             Patient Details
           </h3>
           <div className="grid grid-cols-2 gap-2 text-sm text-gray-600">
-            {reportDetails.patientName && (
+            {reportDetails?.patientName && (
               <p>
-                Name : <strong>{reportDetails.patientName}</strong>
+                Name : <strong>{reportDetails?.patientName}</strong>
               </p>
             )}
-            {reportDetails.referringDoctor &&
+            {reportDetails?.referringDoctor && (
               <p>
-                Ref. By: <strong>{reportDetails.referringDoctor}</strong>
-              </p>
-            }
-            {reportDetails.caseId && (
-              <p>
-                Case ID : <strong>{reportDetails.caseId}</strong>
+                Ref. By: <strong>{reportDetails?.referringDoctor}</strong>
               </p>
             )}
-            {reportDetails.patientId &&
+            {reportDetails?.caseId && (
               <p>
-                Patient ID : <strong> {reportDetails.patientId}</strong>
+                Case ID : <strong>{reportDetails?.caseId}</strong>
               </p>
-            }
-            {reportDetails.sex &&
+            )}
+            {reportDetails?.patientId && (
               <p>
-                Sex : <strong> {reportDetails.sex}</strong>
+                Patient ID : <strong> {reportDetails?.patientId}</strong>
               </p>
-            }
-            {reportDetails.age &&
+            )}
+            {reportDetails?.sex && (    
               <p>
-                Age : <strong> {reportDetails.age}</strong>
+                Sex : <strong> {reportDetails?.sex}</strong>
               </p>
-            }
+            )}
+            {reportDetails?.age && (
+              <p>
+                Age : <strong> {reportDetails?.age}</strong>
+              </p>
+            )}
           </div>
         </div>
 
-        {/* Table */}
-        {/* <h2 className="text-2xl font-semibold text-gray-700 mb-4">
-          Lipid Profile
-        </h2> */}
         <ReportTable data={lipidProfileData} />
       </div>
     </div>
